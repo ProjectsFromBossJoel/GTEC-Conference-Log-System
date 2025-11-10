@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTEC Conference Logbook Portal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1500px;
+      height: 90vh;
+    }
+
+    /* LEFT SIDE */
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem 4rem;
+    }
+
+    .left h2 {
+      font-size: 1.6rem;
+      color: #d63384;
+      margin-bottom: 1rem;
+    }
+
+    .left h1 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .left h1 span {
+      color: #d63384;
+    }
+
+    .left p {
+      font-size: 1.2rem;
+      color: #e83e8c;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    /* RIGHT SIDE */
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 2rem;
+      padding-right: 4rem;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 520px;
+      border-radius: 18px;
+      padding: 1.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100px;
+      height: 190px;
+      object-fit: contain;
+    }
+
+    .register {
+      background: linear-gradient(135deg, #f6a623, #f39c12);
+    }
+
+    .checkin {
+      background: linear-gradient(135deg, #e53935, #c62828);
+    }
+
+    .card-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .card-text h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .card-text p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s ease;
+    }
+
+    .modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    input {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button.submit-btn {
+      background: #d63384;
+      color: white;
+      font-weight: bold;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button.submit-btn:hover {
+      background: #b82a6e;
+    }
+
+    @media (max-width: 1000px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        height: auto;
+      }
+      .left, .right {
+        align-items: center;
+        padding: 0;
+      }
+      .right {
+        margin-top: 2rem;
+      }
+      .card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- LEFT SIDE -->
+    <div class="left">
+      <h2>Welcome to</h2>
+      <h1><span>GTEC Conference</span> LOGBOOK</h1>
+      <p>"MEETING WITH MINISTRY OF EDUCATION"</p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+      <div class="card register" onclick="openModal('register')">
+        <div class="card-text">
+          <h3>New Registration</h3>
+          <p>New Guest & First-time Participant</p>
+        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="New Registration">
+      </div>
+
+      <div class="card checkin" onclick="openModal('login')">
+        <div class="card-text">
+          <h3>Registered Already</h3>
+          <p>Confirm with your phone number</p>
+        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Check-in">
+      </div>
+    </div>
+  </div>
+
+  <!-- Registration Modal -->
+  <div class="modal" id="registerModal">
+    <div class="modal-content">
+      <h2>New Registration</h2>
+      <form id="registerForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <input type="email" id="email" placeholder="Email Address" />
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Check-In Modal -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <h2>Already Registered</h2>
+      <form id="loginForm">
+        <input type="text" id="checkId" placeholder="Enter 5-digit ID or Phone" required />
+        <button type="submit" class="submit-btn">Check In</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const registerModal = document.getElementById("registerModal");
+    const loginModal = document.getElementById("loginModal");
+
+    function openModal(type) {
+      if (type === "register") registerModal.classList.add("active");
+      else loginModal.classList.add("active");
+    }
+
+    window.onclick = function (event) {
+      if (event.target === registerModal) registerModal.classList.remove("active");
+      if (event.target === loginModal) loginModal.classList.remove("active");
+    };
+
+    // Replace with your Google Apps Script URL
+    const scriptURL = "YOUR_SCRIPT_URL_HERE";
+
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const email = document.getElementById("email").value;
+      const uniqueId = Math.floor(10000 + Math.random() * 90000);
+
+      try {
+        await fetch(scriptURL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "register", name, phone, email, id: uniqueId })
+        });
+        alert(`Registration Complete! Your ID is ${uniqueId}`);
+        registerModal.classList.remove("active");
+        document.getElementById("registerForm").reset();
+      } catch (error) {
+        alert("Error submitting form. Please try again.");
+      }
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const checkId = document.getElementById("checkId").value;
+      try {
+        await fetch(scriptURL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "checkin", checkId })
+        });
+        alert("Check-in successful!");
+        loginModal.classList.remove("active");
+        document.getElementById("loginForm").reset();
+      } catch (error) {
+        alert("Error checking in. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
