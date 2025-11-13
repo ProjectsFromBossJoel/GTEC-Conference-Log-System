@@ -370,6 +370,56 @@
   }
 }
 
+      /* Fix stretched images on desktop/tablet */
+@media (min-width: 1001px) {
+  .main-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* prevents stretching */
+  }
+
+  .small-gallery img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .event-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .event-card {
+    height: auto; /* allow it to grow naturally */
+  }
+}
+
+      /* Hover zoom effect for desktop view */
+@media (min-width: 1001px) {
+  /* Smooth transition for all images */
+  .main-image img,
+  .small-gallery img,
+  .event-card img {
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+  }
+
+  /* Hover zoom */
+  .main-image img:hover,
+  .small-gallery img:hover,
+  .event-card img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    cursor: pointer;
+  }
+
+  /* Optional: add subtle lift for cards */
+  .event-card:hover {
+    transform: translateY(-5px);
+  }
+}
+
+
     }
   </style>
 </head>
@@ -492,6 +542,7 @@
   </script>
 </body>
 </html>
+
 
 
 
