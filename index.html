@@ -5,249 +5,260 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>E-LogBook</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
 
-    body {
-      background: linear-gradient(135deg, #ffffff 70%, #f8f8f8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+body {
+  background: linear-gradient(135deg, #ffffff 70%, #f8f8f8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 95%;
-      max-width: 1500px;
-      height: 90vh;
-      gap: 2rem;
-    }
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  max-width: 1500px;
+  min-height: 90vh;
+  gap: 2rem;
+}
 
-    /* LEFT SIDE IMAGE GALLERY */
-    .left {
-      flex: 1.2;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1.5rem;
-    }
+/* LEFT SIDE IMAGE GALLERY */
+.left {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
 
-    .main-image {
-      width: 100%;
-      height: 55%;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
+.main-image {
+  width: 100%;
+  height: 55%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
 
-    .main-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease, box-shadow 0.3s ease;
-    }
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
 
-    .main-image img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      cursor: pointer;
-    }
+.main-image img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
 
-    .small-gallery {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      height: 35%;
-    }
+.small-gallery {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 35%;
+}
 
-    .small-gallery .card {
-      flex: 1;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.small-gallery .card {
+  flex: 1;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .small-gallery .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
+.small-gallery .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
 
-    .small-gallery img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
+.small-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
 
-    .small-gallery img:hover {
-      transform: scale(1.1);
-      cursor: pointer;
-    }
+.small-gallery img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
-    /* RIGHT SIDE CONTENT */
-    .right {
-      flex: 0.8;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      padding-right: 3rem;
-      gap: 2rem;
-    }
+/* RIGHT SIDE CONTENT */
+.right {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-right: 3rem;
+  gap: 2rem;
+}
 
-    .right h2 {
-      font-size: 1.6rem;
-      color: #153d8b;
-    }
+.right h2 {
+  font-size: 1.6rem;
+  color: #153d8b;
+}
 
-    .right h3 {
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: #111;
-    }
+.right h3 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #111;
+}
 
-    .right h3 span {
-      color: #d63384;
-    }
+.right h3 span {
+  color: #d63384;
+}
 
-    /* Event Cards */
-    .event-card {
-      position: relative;
-      width: 100%;
-      max-width: 350px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
+/* Event Cards */
+.event-card {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
 
-    .event-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-    }
+.event-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
 
-    .event-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s ease;
-    }
+.event-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
 
-    .event-card:hover img {
-      transform: scale(1.1);
-    }
+.event-card:hover img {
+  transform: scale(1.1);
+}
 
-    .event-card .caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 1rem 1.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
-      color: white;
-    }
+.event-card .caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+  color: white;
+}
 
-    .event-card .caption p {
-      font-size: 1rem;
-      font-weight: 600;
-      opacity: 0.95;
-    }
+.event-card .caption p {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
 
-    /* ----------- Responsive (Mobile Portrait) ----------- */
-    @media (max-width: 1000px) and (orientation: portrait) {
-      body {
-        overflow-y: auto;
-        height: auto;
-      }
+/* ----------- Mobile Portrait ----------- */
+@media (max-width: 768px) and (orientation: portrait) {
+  body {
+    display: block;
+    overflow-y: auto;
+  }
 
-      .container {
-        flex-direction: column;
-        gap: 2rem;
-        height: auto;
-      }
+  .container {
+    flex-direction: column;
+    gap: 1.5rem;
+    min-height: auto;
+    padding: 1rem 0;
+  }
 
-      .left, .right {
-        width: 100%;
-        padding: 0 1rem;
-      }
+  .left, .right {
+    width: 100%;
+    padding: 0 1rem;
+  }
 
-      .main-image {
-        height: 250px;
-      }
+  .main-image {
+    height: 220px;
+  }
 
-      .small-gallery {
-        flex-direction: row;
-        gap: 0.5rem;
-        height: auto;
-      }
+  .small-gallery {
+    gap: 0.5rem;
+    height: auto;
+  }
 
-      .small-gallery .card {
-        height: 100px;
-      }
+  .small-gallery .card {
+    height: 90px;
+  }
 
-      .right {
-        align-items: center;
-        text-align: center;
-        padding: 0;
-      }
+  .right {
+    align-items: center;
+    text-align: center;
+    padding: 0;
+  }
 
-      .event-card {
-        width: 90%;
-      }
-    }
+  .event-card {
+    width: 95%;
+    max-width: none;
+  }
+}
 
-    /* ----------- Landscape on Mobile/Tablets ----------- */
-    @media (max-width: 1000px) and (orientation: landscape) {
-      .container {
-        flex-direction: row;
-        gap: 1rem;
-        height: auto;
-        padding: 1rem;
-      }
+/* ----------- Mobile Landscape ----------- */
+@media (max-width: 900px) and (orientation: landscape) {
+  .container {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+  }
 
-      .left {
-        flex: 1;
-      }
+  .left, .right {
+    flex: 1;
+    padding: 0.5rem;
+  }
 
-      .right {
-        flex: 1;
-        padding: 1rem;
-        gap: 1rem;
-      }
+  .main-image {
+    height: 45vh;
+  }
 
-      .main-image {
-        height: 45vh;
-      }
+  .small-gallery {
+    height: 20vh;
+  }
 
-      .small-gallery {
-        height: 20vh;
-      }
+  .event-card {
+    width: 90%;
+  }
+}
 
-      .event-card {
-        height: auto;
-      }
-    }
+/* ----------- Tablet Portrait ----------- */
+@media (min-width: 769px) and (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
 
-    /* ----------- Desktop Fix (Prevent Stretch) ----------- */
-    @media (min-width: 1001px) {
-      .main-image img,
-      .small-gallery img,
-      .event-card img {
-        object-fit: contain;
-      }
-    }
-  </style>
+  .main-image {
+    height: 300px;
+  }
+
+  .small-gallery .card {
+    height: 120px;
+  }
+
+  .right {
+    align-items: center;
+    text-align: center;
+    padding: 0;
+  }
+}
+</style>
+
+  
 </head>
 <body>
   <div class="container">
@@ -385,6 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
 </body>
 </html>
+
 
 
 
